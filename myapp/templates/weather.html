@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <br /><br /> 
+  <div >
+    <h1 class="text-center text-light" >Get Your city weather in real time</h1>
+  </div>
+
+  <br>
+
+
+  <div class="container ">
+    <form method="post" class="col-md"">
+      {% csrf_token %}
+      <div class=" input-group">
+
+      <input type="text" class="form-control rounded-pill" name="city" placeholder="Choose Your City ...">
+      <div class="input-group-btn">
+        <button class="btn btn-outline-info text-black bg-info py-2 mx-2 rounded-pill" type="submit">Search</button>
+      </div>
+      </div>
+      <form>
+    </div>
+  </nav>
+
+  <br> <br>
+  <div class="row">
+    {% if country_code and coordinate and temp and pressure and humidity %}
+    <div class="col d-flex justify-content-center" ">
+      <div class=" card text-white bg-dark mb-6">
+      <div class=" card-body">
+        <h4><span class="badge text-light">Country Code :</span> {{country_code}}</h4>
+        <h4><span class="badge text-light">Coordinates [X,Y] :</span> {{coordinate}}</h4>
+        <h4><span class="badge text-light">Temperature in Celsius :</span> {{temp }}</h4>
+        <h4><span class="badge text-light">Pressure :</span> {{pressure}} </h4>
+        <h4><span class="badge text-light">Humidity : </span> {{humidity}}</h4>
+        <h4><span class="badge text-light">Forecast : </span> {{main}} <img
+            src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+        <h4><span class="badge text-light">Description : </span> {{description}}</h4>
+      </div>
+      {% endif %}
+    </div>
+
+    {% endblock body %}

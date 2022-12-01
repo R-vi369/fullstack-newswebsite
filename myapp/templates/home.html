@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block homecss %}
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,600);
+.snip1347 {
+    border-radius: 20px;
+  font-family: 'Roboto', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  min-width: 230px;
+  max-width: 315px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  line-height: 1.4em;
+  background-color: #141414;
+  height: 71vh;
+}
+.snip1347 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.container{
+  z-index:-1;
+}
+.snip1347 img {
+  max-width: 100%;
+  vertical-align: top;
+  opacity: 0.85;
+  height: 38vh;
+}
+.snip1347 .date {
+  position: absolute;
+  background-color: #000000;;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px 25px 0;
+  text-align: right;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+.snip1347 .date:before {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 px px 0;
+  border-color: transparent #1e1e1e transparent transparent;
+}
+.snip1347 figcaption {
+  width: 100%;
+  background-color: #141414;
+  padding: 0 25px 25px;
+  position: relative;
+}
+.snip1347 figcaption:before {
+  position: absolute;
+  content: '';
+  bottom: 100%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0px 0 0 0px;
+  border-color: transparent transparent transparent #141414;
+}
+.snip1347 figcaption a {
+  padding: 5px;
+  border-radius:7px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin: 0.1em 5em;
+  display: inline-block;
+  opacity: 0.65;
+  width: 47%;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.snip1347 figcaption a:hover {
+  opacity: 1;
+}
+.snip1347 h2 {
+  margin: 12px 0 10px;
+  font-weight: 300;
+  font-size: 1.5em;
+  line-height: 1.2em;
+}
+.snip1347 p {
+  margin: 0 0 10px;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+.container{
+    display: flex;
+    flex-wrap:wrap;
+    margin: auto;
+    justify-content: space-evenly;
+}
+
+{% endblock homecss %}
+{% block body %}
+
+
+<div class="container">
+  {% for i in api.articles %}
+    <figure class="snip1347">
+    <img src="{{i.urlToImage}}" alt="No image" />
+    <div class="date">{{i.publishedAt|slice:":10"}}</div>
+    <figcaption>
+      <h2>{{i.title | truncatechars:50}}</h2>
+      <p>{{i.description | truncatechars:100}} </p><a href="{{i.url}}" class="read-more">Read More</a>
+    </figcaption>
+
+  </figure>
+  {% endfor %}
+  
+</div>
+
+{% endblock body %}

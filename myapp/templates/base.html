@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <title>Document</title>
+    <style>/* Basic styling */
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-family: sans-serif;
+            font-size: 16px;
+            background-color: #454242;
+        }
+        .welcome {
+            margin-top: 0;
+            margin-bottom: 0rem;
+            color:#fff9bd;
+            font-size: 19px;
+            margin: 0 6px 0 10px;
+        }
+        .date{
+          color:white;
+          padding-right:2rem;
+          font-size:15px
+        }
+        nav {
+            background: #222;
+            padding: 0 15px;
+            position: sticky;
+            top: 0; 
+            z-index: 2;
+        }
+         a.hovr:hover{
+          color:rgb(111, 208, 232);
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        .menu,
+        .submenu {   
+            list-style-type: none;
+            
+        }
+        .logo {
+            font-size: 19px;
+            padding: 7.5px 10px 7.5px 0;
+        }
+        .item {
+            padding: 10px;
+        }
+        .item.button {
+            padding: 9px 5px;
+            
+        }
+        {% comment %} .item:not(.button) a:hover,
+        .item a:hover::after {
+            color: #ccc;
+        } {% endcomment %}
+        /* Mobile menu */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu li a {
+   display: block; 
+    padding: 7px 5px;
+}
+.menu li.subitem a {
+    padding: 15px;
+}
+.toggle {
+    order: 1;
+    font-size: 20px;
+}
+.item.button {
+    order: 2;
+}
+.item {
+    order: 3;
+    width: 100%;
+    text-align: center;
+    display: none;
+    padding:6px
+}
+.active .item {
+    display: block;
+}
+.button.secondary { /* divider between buttons and menu links */
+    border-bottom: 1px #444 solid;
+}
+
+/* Submenu up from mobile screens */
+.submenu {
+    display: none;
+}
+.submenu-active .submenu {
+   display: block;
+}
+.has-submenu i {
+    font-size: 12px;
+}
+.has-submenu > a::after {
+    font-family: "Font Awesome 5 Free";
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 900; 
+    content: "\f078";
+    color: white;
+    padding-left: 5px;
+}
+.subitem a {
+    padding: 10px 15px;
+}
+.submenu-active {
+    background-color: #111;
+    border-radius: 3px;
+}
+/* Tablet menu */
+@media all and (min-width: 700px) {
+    .menu {
+        justify-content: center;
+    }
+    .logo {
+        flex: 1;
+    }
+    .item.button {
+        width: auto;
+        order: 1;
+        display: block;
+        
+    }
+    .toggle {
+        flex: 1;
+        text-align: right;
+        order: 2;
+    }
+    /* Button up from tablet screen */
+    .menu li.button a {
+        padding: 7px 15px;
+        margin: 5px 0;
+    }
+    .button a {
+        background: #0080ff;
+        border: 1px royalblue solid;
+    }
+    .button.secondary {
+        border: 0;
+    }
+    .button.secondary a {
+        background: royalblue;
+        border: 1px #0080ff solid;  
+    }
+    .button a:hover {
+        text-decoration: none;
+    }
+    /*.button:not(.secondary) a:hover {
+        background: royalblue;
+        border-color: darkblue;
+    } */
+}
+/* Desktop menu */
+@media all and (min-width: 960px) {
+    .menu {
+        padding: 14px 5px;
+        flex-wrap: nowrap;
+        background: none;
+    }
+    .logo {
+        order: 0;
+    }
+    .item {
+        order: 1;
+        position: relative;
+        display: block; 
+        width: auto;
+    }
+    .button {
+        order: 2;
+    }
+    .submenu-active .submenu {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 68px;
+        background: #111;
+    }
+    .toggle {
+        display: none;
+    }
+    .submenu-active {
+        border-radius: 0;
+    }
+}
+{% block contactcss %}{% endblock contactcss %}
+{% block homecss %}{% endblock homecss %}
+{% block signupcss %}{% endblock signupcss %}
+{% block logincss %}{% endblock logincss %}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav >
+        <ul class="menu">
+            <li class="logo"><a class="hovr" href="/">DAILY NEWS </a></li>
+            <li class="date">      
+             <span id='date-time'></span>
+            </li>
+            <li class="item"><a class="hovr" href="/home">Home</a></li>
+          
+            <li class="item"><a class="hovr" href="/sports">Sports</a></li>
+            <li class="item"><a class="hovr" href="/technology">Technology</a></li>
+            <li class="item"><a class="hovr" href="/science">Science</a></li>
+            <li class="item"><a class="hovr" href="/health">Health</a></li>
+            <li class="item"><a class="hovr" href="/general">General</a></li>
+            <li class="item"><a class="hovr" href="/entertainment">Entertainment</a></li>
+            <li class="item"><a class="hovr" href="/business">Business</a></li>
+            <li class="item"><a class="hovr" href="/weather">Weather</a></li>
+            
+            <li class="item"><a class="hovr" href="/contact">Contact</a>
+            </li>
+              {% if user.is_authenticated %}
+              <li class="item button secondary"><p class="welcome">Welcome {{request.user}}</p></li>
+              <li class="item button"><a href="/logout" class="btn btn-info" role="button">Log Out</a></li>
+        {% else %}
+            <li class="item button"><button type="button" class="btn btn-info mx-1" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Log In
+              </button></li>
+            <li class="item button secondary"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#signupModal">
+                Sign Up
+              </button></li>
+              {% endif %}
+            <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
+        </ul>
+    </nav>
+    {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>Message:</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+    <!-- SignUp Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModal">Sign Up</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/signup">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Username</label>
+              <input type="text" name="username" class="form-control" id="username"
+                aria-describedby="emailHelp" required>
+
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">First Name</label>
+              <input type="text" name="fname" class="form-control" id="fname" aria-describedby="emailHelp"
+                required>
+
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Last Name</label>
+              <input type="text" name="lname" class="form-control" id="lname" aria-describedby="emailHelp"
+                required>
+
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                required>
+
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="pass1" class="form-control" id="pass1" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+              <input type="password" name="pass2" class="form-control" id="pass2" required>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logintitleModal">Log In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/login" method='post'>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Username</label>
+              <input type="text" name="loginusername" class="form-control" id="loginusername"
+                aria-describedby="emailHelp" required>
+
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name="loginpass" class="form-control" id="loginpass" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+    {% block body %}{% endblock body %}
+</body>
+<script>
+   var now = new Date().toLocaleDateString('en-us', { weekday:"short" , month:"short", day:"numeric" , year:"numeric"});
+              document.getElementById('date-time').innerHTML=now;
+
+
+  const toggle = document.querySelector(".toggle");
+    const menu = document.querySelector(".menu");
+     
+    /* Toggle mobile menu */
+    function toggleMenu() {
+        if (menu.classList.contains("active")) {
+            menu.classList.remove("active");
+             
+            // adds the menu (hamburger) icon
+            toggle.querySelector("a").innerHTML = "<i class=’fas fa-bars’></i>";
+        } else {
+            menu.classList.add("active");
+             
+            // adds the close (x) icon
+            toggle.querySelector("a").innerHTML = "<i class=’fas fa-times’></i>";
+        }
+    }
+     
+    /* Event Listener */
+    toggle.addEventListener("click", toggleMenu, false);
+    const items = document.querySelectorAll(".item");
+ 
+/* Activate Submenu */
+function toggleItem() {
+  if (this.classList.contains("submenu-active")) {
+    this.classList.remove("submenu-active");
+  } else if (menu.querySelector(".submenu-active")) {
+    menu.querySelector(".submenu-active").classList.remove("submenu-active");
+    this.classList.add("submenu-active");
+  } else {
+    this.classList.add("submenu-active");
+  }
+}
+ 
+/* Event Listeners */
+for (let item of items) {
+    if (item.querySelector(".submenu")) {
+      item.addEventListener("click", toggleItem, false);
+      item.addEventListener("keypress", toggleItem, false);
+    }   
+}
+/* Close Submenu From Anywhere */
+function closeSubmenu(e) {
+  if (menu.querySelector(".submenu-active")) {
+    let isClickInside = menu
+      .querySelector(".submenu-active")
+      .contains(e.target);
+ 
+    if (!isClickInside && menu.querySelector(".submenu-active")) {
+      menu.querySelector(".submenu-active").classList.remove("submenu-active");
+    }
+  }
+}
+ 
+/* Event listener */
+document.addEventListener("click", closeSubmenu, false);
+
+</script>
+</html>

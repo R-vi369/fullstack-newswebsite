@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+
+
+
+{% block body %}
+
+
+<div class="container">
+    {% for i in api.articles %}
+      <figure class="snip1347">
+      <img src="{{i.urlToImage}}" alt="No image" />
+      <div class="date">{{i.publishedAt|slice:":10"}}</div>
+      <figcaption>
+        <h2>{{i.title | truncatechars:50}}</h2>
+        <p>{{i.description | truncatechars:100}} </p><a href="{{i.url}}" class="read-more">Read More</a>
+      </figcaption>
+  
+    </figure>
+  {% endfor %}
+  
+</div>
+
+{% endblock body %}
