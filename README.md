@@ -10,7 +10,7 @@ This a fullstack newswebsite which is created with the help of html,css,js,boots
 ![Screenshot (8)](https://user-images.githubusercontent.com/105352161/207795595-9d4768f8-db63-4873-be45-348f798a6091.png)
 # Sign up and sign out feature
 ![Screenshot (6)](https://user-images.githubusercontent.com/105352161/207795740-cdd598e7-45e9-4999-b9b1-aaed8dee0386.png)
-#Login and Log out feature![Screenshot (9)](https://user-images.githubusercontent.com/105352161/207796078-b5b5e244-3a01-4acc-b9ed-9b1a4cffdbcb.png)
+# Login and Log out feature![Screenshot (9)](https://user-images.githubusercontent.com/105352161/207796078-b5b5e244-3a01-4acc-b9ed-9b1a4cffdbcb.png)
 # Weather Feature
 ![Screenshot (7)](https://user-images.githubusercontent.com/105352161/207795915-fba890c1-b109-403f-8a33-2a445caa5833.png)
 # Responsive
